@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Compteur de jeux de cartes</string>
+    <string name="new_score">Nouveau jeu</string>
+    <string name="continue_score">Continuer un jeux</string>
+    <string name="help">Aide</string>
+
+
+    <string name="action_bar_add_score">Ajoute un score</string>
+    <string name="action_bar_save_game">Sauvegarde</string>
+    <string name="header_nosave_quit">Quitter sans sauvé</string>
+    <string name="action_bar_done">Terminé</string>
+
+
+
+    <string name="dialog_title_new_player">Création d\'un nouveau joueur</string>
+    <string name="dialog_birthday">Age du joueur</string>
+    <string name="dialog_player_name">Pseudonyme</string>
+    <string name="dialog_radio_male">Homme</string>
+    <string name="dialog_radio_female">Femme</string>
+    <string name="dialog_radio_cisgender">Non-binaire</string>
+    <string name="dialog_player_name_input">xXxXDarkSasukeXxXx</string>
+    <string name="dialog_radio_text">Sexe</string>
+    <string name="dialog_add_score_text">Score</string>
+    <string name="action_bar_add_player">Ajoute un joueur</string>
+    <string name="action_bar_tittle">Paramètre du jeu</string>
+    <string name="pre_lobby_text_spinner">Choix du jeu ?</string>
+    <string name="pre_lobby_button">Terminé</string>
+    <string name="pre_lobby_text_list">Qui joue ?</string>
+    <string name="dialog_positive_button">Validé</string>
+    <string name="dialog_negative_button">Annulé</string>
+    <string name="pre_lobby_party_name">Nom de votre partie</string>
+    <string name="invalid_input_players">Le maximum de joueur est 8.</string>
+    <string name="invalid_input_party_name">Veuillez saisir un nom le nom de votre partie</string>
+
+
+</resources>

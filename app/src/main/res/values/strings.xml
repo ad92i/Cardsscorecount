@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Cards games scores</string>
+    <string name="new_score">new game</string>
+    <string name="continue_score">continu game</string>
+    <string name="help">help</string>
+
+
+    <!-- Action bar lobby -->
+    <string name="action_bar_add_score">add score</string>
+    <string name="action_bar_save_game">save</string>
+    <string name="action_bar_done">done</string>
+    <string name="header_nosave_quit">quit (no save)</string>
+
+    <!-- Dialog creating players -->
+    <string name="dialog_title_new_player">New player</string>
+    <string name="dialog_birthday">birthday</string>
+    <string name="dialog_player_name">pseudo</string>
+    <string name="dialog_player_name_input">xXxXDarkSasukeXxXx</string>
+    <string name="dialog_radio_male">male</string>
+    <string name="dialog_radio_female">female</string>
+    <string name="dialog_radio_cisgender">cisgender</string>
+    <string name="dialog_radio_text">sexe</string>
+
+    <!-- Dialog add scores -->
+    <string name="dialog_add_score_text">score</string>
+    <string name="dialog_add_score_input" translatable="false">0</string>
+
+    <!-- Action bar pre lobby -->
+    <string name="action_bar_add_player">add player</string>
+    <string name="action_bar_tittle">games settings</string>
+
+    <!-- pre lobby -->
+    <string name="pre_lobby_text_spinner">what game</string>
+    <string name="pre_lobby_button">done</string>
+    <string name="dialog_birthday_input" translatable="false">21</string>
+    <string name="pre_lobby_text_list">Who are playing</string>
+    <string name="pre_lobby_party_name">party\'s name</string>
+    <string name="pre_lobby_party_name_input" translatable="false">xxxx#1</string>
+    <string name="invalid_input_players">Player\'s maximum is 8</string>
+    <string name="invalid_input_party_name">Please enter a party name</string>
+
+
+
+    <string name="dialog_positive_button">validate</string>
+    <string name="dialog_negative_button">cancel</string>
+</resources>
