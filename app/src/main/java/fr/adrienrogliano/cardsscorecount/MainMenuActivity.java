@@ -17,13 +17,10 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
 
+        //Permet de récupérer les ids des différentes vues.
         mNewLobbyButton = findViewById(R.id.new_score);
-
         mHelpButton = findViewById(R.id.help);
 
-jknkn
-
-        // zz
 
         mNewLobbyButton.setOnClickListener(new View.OnClickListener() {
             @Override
