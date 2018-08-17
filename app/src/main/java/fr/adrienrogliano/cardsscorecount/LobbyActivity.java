@@ -24,18 +24,28 @@ import java.util.List;
 
 public class LobbyActivity extends AppCompatActivity {
 
-    private DrawerLayout mDrawerLayout;
-    private Lobby mLobby;
-    private List<String> mScoreList;
-    private GridView mGridViewScore;
-    private ArrayAdapter<String> mAdapterScore;
-    private Game mGameChoose;
+    // Permet l'affichage d'un menu lors du swipe de la gauche vers la droite de l'écran.
+    private DrawerLayout mDrawerLayout = null;
+
+    // Contiendra une instance de Lobby.
+    private Lobby mLobby = null;
+
+    // Contiendra la liste des scores de tous les joueurs.
+    private List<String> mScoreList = null;
+
+    // Récupère l'objet GridView utilisé dans le XML, sert à afficher la liste des scores.
+    private GridView mGridViewScore = null;
+
+    // Permet de faire la liaison entre la liste des scores et l'objet GridView.
+    private ArrayAdapter<String> mAdapterScore = null;
+
+    // Contiendra une instance du jeu choisi (tous les jeux hérite de Game).
+    private Game mGameChoose = null;
 
     // TODO : Sauvegarde des parties et ajout de condition de victoire.
 
-
-    private AlertDialog.Builder addScoreDialog(final Player player) {
-
+    // Gère l'affiche de la boîte de dialogue "Ajouter un score".
+    private void addScoreDialog(final Player player) {
         final View view = getLayoutInflater().inflate(R.layout.dialog_add_score, null);
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(LobbyActivity.this)
@@ -54,10 +64,11 @@ public class LobbyActivity extends AppCompatActivity {
                     }
                 });
 
-        return dialog;
+        dialog.show();
     }
 
 
+    // Récupère les joueurs passés dans le paramètre de l'activité.
     private List<Player> getIntentPlayers() {
         List<Player> players = new ArrayList<>();
         int nb_players;
@@ -72,6 +83,7 @@ public class LobbyActivity extends AppCompatActivity {
         return players;
     }
 
+    // Renvoie une liste de scores, pour l'affichage.
     private ArrayList<String> fillScoreList() {
         ArrayList<String> list = new ArrayList<>();
 
@@ -96,15 +108,17 @@ public class LobbyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lobby_main);
 
 
+        // Permet de connaitre le jeu sur la précédente activité.
         switch (getIntent().getStringExtra(PreLobbyActivity.GAME_CHOOSE)) {
             case "Rami":
                 mGameChoose = new Rami(getIntent().getStringExtra(PreLobbyActivity.PARTY_NAME));
                 break;
         }
 
+        // On initialise nos différentes variables d'instance.
         mLobby = new Lobby(getIntentPlayers(), mGameChoose);
 
-        // Permet d'afficher la toolbar
+        // Permet l'affichage d'une barre d'information ou sera situé différents boutons.
         Toolbar toolbar = findViewById(R.id.score_display_toolbar);
         toolbar.setTitle(mLobby.getPartyName());
         setSupportActionBar(toolbar);
@@ -131,15 +145,17 @@ public class LobbyActivity extends AppCompatActivity {
 
         mScoreList = fillScoreList();
 
+        // Permet l'affichage de la liste des scores en fonction du nombre de joueur.
         mGridViewScore = findViewById(R.id.grid_score_position);
         mGridViewScore.setNumColumns(mLobby.getPlayers().size());
+
         mAdapterScore = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mScoreList);
         mGridViewScore.setAdapter(mAdapterScore);
 
 
     }
 
-    // Permet d'afficher le menu avec +
+    // Permet d'afficher les différents icones de bouton présent sur la barre d'information.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbar_score_display, menu);
@@ -147,8 +163,7 @@ public class LobbyActivity extends AppCompatActivity {
         return true;
     }
 
-
-    // Gére les appuis sur les boutons
+    // Permet de gérer les appuis sur la barre d'information.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean return_value;
@@ -161,7 +176,7 @@ public class LobbyActivity extends AppCompatActivity {
 
             case R.id.action_bar_add_score:
                 for (Player player : mLobby.getPlayers()) {
-                    addScoreDialog(player).show();
+                    addScoreDialog(player);
                 }
                 return_value = true;
                 break;
