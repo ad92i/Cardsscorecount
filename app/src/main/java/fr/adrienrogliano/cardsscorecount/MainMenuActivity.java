@@ -22,6 +22,7 @@ public class MainMenuActivity extends AppCompatActivity {
         mHelpButton = findViewById(R.id.help);
 
 
+        // Lors de l'appui sur le bouton "New Lobby", démarre l'activité PreLobby
         mNewLobbyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
