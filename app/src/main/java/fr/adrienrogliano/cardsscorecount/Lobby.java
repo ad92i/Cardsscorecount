@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fr.adrienrogliano.cardsscorecount.games.Game;
+
 
 public class Lobby implements Serializable {
 

@@ -1,6 +1,9 @@
-package fr.adrienrogliano.cardsscorecount;
+package fr.adrienrogliano.cardsscorecount.games;
 
 import java.util.List;
+
+import fr.adrienrogliano.cardsscorecount.Lobby;
+import fr.adrienrogliano.cardsscorecount.Player;
 
 public abstract class Game {
     private String partyName;

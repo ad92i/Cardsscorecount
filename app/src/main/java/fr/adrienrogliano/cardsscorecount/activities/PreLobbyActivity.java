@@ -1,4 +1,4 @@
-package fr.adrienrogliano.cardsscorecount;
+package fr.adrienrogliano.cardsscorecount.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +21,11 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.adrienrogliano.cardsscorecount.Player;
+import fr.adrienrogliano.cardsscorecount.R;
+import fr.adrienrogliano.cardsscorecount.games.Game;
+import fr.adrienrogliano.cardsscorecount.games.Rami;
 
 public class PreLobbyActivity extends AppCompatActivity {
 

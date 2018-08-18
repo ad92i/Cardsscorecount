@@ -1,4 +1,4 @@
-package fr.adrienrogliano.cardsscorecount;
+package fr.adrienrogliano.cardsscorecount.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,6 +21,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.adrienrogliano.cardsscorecount.Lobby;
+import fr.adrienrogliano.cardsscorecount.Player;
+import fr.adrienrogliano.cardsscorecount.R;
+import fr.adrienrogliano.cardsscorecount.games.Game;
+import fr.adrienrogliano.cardsscorecount.games.Rami;
 
 public class LobbyActivity extends AppCompatActivity {
 
