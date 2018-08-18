@@ -57,7 +57,7 @@ public class LobbyActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         EditText editText = view.findViewById(R.id.dialog_add_score_input);
                         mLobby.addScore(player, editText.getText().toString());
-                        mScoreList = fillScoreList();
+                        mScoreList = mLobby.getGame().setScoringList(mLobby);
                         mAdapterScore = new ArrayAdapter<>(LobbyActivity.this, android.R.layout.simple_list_item_1, mScoreList);
                         mGridViewScore.setAdapter(mAdapterScore);
 
@@ -82,25 +82,6 @@ public class LobbyActivity extends AppCompatActivity {
 
         return players;
     }
-
-    // Renvoie une liste de scores, pour l'affichage.
-    private ArrayList<String> fillScoreList() {
-        ArrayList<String> list = new ArrayList<>();
-
-        for (int i = 0; i < mLobby.getPlayers().size(); i++)
-            list.add(mLobby.getPlayers().get(i).toString());
-
-        for (int i = 0; i < mLobby.getTurn(); i++)
-            for (int j = 0; j < mLobby.getPlayers().size(); j++)
-                list.add(mLobby.getScorePlayer(mLobby.getPlayers().get(j), i));
-
-        for (int i = 0; i < mLobby.getPlayers().size(); i++)
-            list.add(String.valueOf(mLobby.totalPlayerScore(mLobby.getPlayers().get(i))));
-
-        return list;
-    }
-
-    // TODO : réfléchier si modifier fillScoreList dans la classe qui correspond au jeu choisi afin (Molky) oui ?
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +124,7 @@ public class LobbyActivity extends AppCompatActivity {
 
         mLobby.initializeScore();
 
-        mScoreList = fillScoreList();
+        mScoreList = mLobby.getGame().setScoringList(mLobby);
 
         // Permet l'affichage de la liste des scores en fonction du nombre de joueur.
         mGridViewScore = findViewById(R.id.grid_score_position);

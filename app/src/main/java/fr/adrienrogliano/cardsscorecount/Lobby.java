@@ -40,6 +40,10 @@ public class Lobby implements Serializable {
         return scoreStringListMap.get(player).get(position);
     }
 
+    public Game getGame() {
+        return game;
+    }
+
     public int getTurn() {
         return scoreStringListMap.get(players.get(0)).size();
     }

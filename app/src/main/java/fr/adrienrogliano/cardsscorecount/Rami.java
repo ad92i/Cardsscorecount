@@ -1,20 +1,16 @@
 package fr.adrienrogliano.cardsscorecount;
 
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Rami extends Game {
 
-    private String rules;
+    public static final String gameName = "";
+    public static final String gameRules = "";
 
     public Rami(String partyName){
         super(partyName);
-    }
-
-    public Rami() {
-        super();
     }
 
     @Override
@@ -34,19 +30,35 @@ public class Rami extends Game {
         return winner;
     }
 
-    public void setRules(String rules) {
-        this.rules = rules;
-    }
+    // TODO Surement à refaire !
+    @Override
+    public List<String> setScoringList(Lobby lobby) {
+        ArrayList<String> list = new ArrayList<>();
 
-    public String getRules() {
-        return rules;
+        for (int i = 0; i < lobby.getPlayers().size(); i++)
+            list.add(lobby.getPlayers().get(i).toString());
+
+        for (int i = 0; i < lobby.getTurn(); i++)
+            for (int j = 0; j < lobby.getPlayers().size(); j++)
+                list.add(lobby.getScorePlayer(lobby.getPlayers().get(j), i));
+
+        for (int i = 0; i < lobby.getPlayers().size(); i++)
+            list.add(String.valueOf(lobby.totalPlayerScore(lobby.getPlayers().get(i))));
+
+        return list;
+
+
     }
 
     @Override
     public String getGameName() {
-        return "Rami";
+        return Rami.gameName;
     }
 
+    @Override
+    public String getGameRules() {
+        return Rami.gameRules;
+    }
 
 
 }

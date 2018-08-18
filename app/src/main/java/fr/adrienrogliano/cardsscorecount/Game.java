@@ -9,20 +9,16 @@ public abstract class Game {
         this.partyName = partyName;
     }
 
-    public Game(){
-        this("rename");
-    }
-
 
     public abstract Player victoryPlayer(Lobby lobby);
+    public abstract List<String> setScoringList(Lobby lobby);
+
+    public abstract String getGameName();
+    public abstract String getGameRules();
 
 
     public String getPartyName() {
         return partyName;
-    }
-
-    public String getGameName(){
-        return "Jeu";
     }
 
     @Override
