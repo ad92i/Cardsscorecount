@@ -159,7 +159,7 @@ public class PreLobbyActivity extends AppCompatActivity {
     private List<Game> createGamesList() {
         List<Game> games = new ArrayList<>();
 
-        games.add(new Rami(""));
+        games.add(new Rami());
 
         return games;
     }

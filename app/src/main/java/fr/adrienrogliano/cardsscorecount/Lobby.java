@@ -29,11 +29,6 @@ public class Lobby implements Serializable {
         return players;
     }
 
-
-    public void addScore(Player player, String score) {
-        scoreStringListMap.get(player).add(score);
-    }
-
     public List<String> getScoreListPlayer(Player player) {
         return scoreStringListMap.get(player);
     }
@@ -58,6 +53,9 @@ public class Lobby implements Serializable {
         return partyName;
     }
 
+
+
+
     public int totalPlayerScore(Player player) {
         int total = 0;
         for (String string : scoreStringListMap.get(player)) {
@@ -71,6 +69,9 @@ public class Lobby implements Serializable {
             scoreStringListMap.put(player, new ArrayList<String>());
 
         }
+    }
+    public void addScore(Player player, String score) {
+        scoreStringListMap.get(player).add(score);
     }
 
 

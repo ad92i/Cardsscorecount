@@ -9,26 +9,27 @@ import fr.adrienrogliano.cardsscorecount.Player;
 
 public class Rami extends Game {
 
-    public static final String gameName = "";
+    public static final String gameName = "Rami";
     public static final String gameRules = "";
 
     public Rami(String partyName){
         super(partyName);
     }
+    public Rami(){
+        this("");
+    }
+
 
     @Override
     public Player victoryPlayer(Lobby lobby) {
         Player winner = lobby.getPlayers().get(0);
         int min = lobby.totalPlayerScore(lobby.getPlayers().get(0));
 
-        for (Player player : lobby.getPlayers()) {
+        for (Player player : lobby.getPlayers())
             if (min > lobby.totalPlayerScore(player)) {
                 min = lobby.totalPlayerScore(player);
                 winner = player;
-
             }
-
-        }
 
         return winner;
     }
@@ -49,7 +50,6 @@ public class Rami extends Game {
             list.add(String.valueOf(lobby.totalPlayerScore(lobby.getPlayers().get(i))));
 
         return list;
-
 
     }
 
