@@ -11,9 +11,64 @@ import java.io.Serializable;
 
 public class Player implements Parcelable, Serializable {
 
+    public enum SexualAffiliation {
+        MALE, FEMALE, CISGENDER
+    }
+
+    private String pseudo;
+    private int age;
+    private int numberVictory;
+    private int numberParticipation;
+    private SexualAffiliation sexe;
+
+
+    public Player(String pseudo, int age, SexualAffiliation sexe){
+        this.pseudo = pseudo;
+        this.age = age;
+        this.sexe = sexe;
+
+        this.numberParticipation = 0;
+        this.numberVictory = 0;
+
+    }
+
+    public String getPseudo(){
+        return pseudo;
+    }
+
+    public int getAge(){
+        return age;
+    }
+
+    public SexualAffiliation getSexe(){
+        return sexe;
+    }
+
+
+    public void hasParticipate() {
+        this.numberParticipation++;
+    }
+
+    public static Player loadPlayer(Context context, String pseudo) throws IOException, ClassNotFoundException {
+        ObjectInputStream load = new ObjectInputStream(context.openFileInput(pseudo));
+        Player player = (Player) load.readObject();
+        load.close();
+        return player;
+    }
+
+    public void savePlayer(Context context) throws IOException {
+        ObjectOutputStream save = new ObjectOutputStream(context.openFileOutput("player__" + getPseudo(), Context.MODE_PRIVATE));
+        save.writeObject(this);
+        save.close();
+    }
+
+    // ----------------------------------------------------- Method for PARCEL implementation -----------------------------------------------------
+
     public Player(Parcel in) {
         pseudo = in.readString();
         age = in.readInt();
+        numberVictory = in.readInt();
+        numberParticipation = in.readInt();
     }
 
     public static final Creator<Player> CREATOR = new Creator<Player>() {
@@ -37,54 +92,12 @@ public class Player implements Parcelable, Serializable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(pseudo);
         dest.writeInt(age);
+        dest.writeInt(numberVictory);
+        dest.writeInt(numberParticipation);
     }
 
-    public enum SexualAffiliation {
-        MALE, FEMALE, CISGENDER
-    }
+    // --------------------------------------------------------------------------------------------------------------------------------------------
 
-    private String pseudo;
-    private int age;
-    private SexualAffiliation sexe;
-
-
-    public Player(String pseudo, int age, SexualAffiliation sexe){
-        this.pseudo = pseudo;
-        this.age = age;
-        this.sexe = sexe;
-
-    }
-
-
-
-
-    // Utilisé pour l'affichage.
-    public String getPseudo(){
-        return pseudo;
-    }
-
-    public int getAge(){
-        return age;
-    }
-
-    public SexualAffiliation getSexe(){
-        return sexe;
-    }
-
-
-    public static Player loadPlayer(Context context, String pseudo) throws IOException, ClassNotFoundException {
-        ObjectInputStream load = new ObjectInputStream(context.openFileInput(pseudo));
-        Player player = (Player) load.readObject();
-
-        load.close();
-        return player;
-    }
-
-    public void savePlayer(Context context) throws IOException {
-        ObjectOutputStream save = new ObjectOutputStream(context.openFileOutput("player__" + getPseudo(), Context.MODE_PRIVATE));
-        save.writeObject(this);
-        save.close();
-    }
     @Override
     public String toString(){
         return this.getPseudo();

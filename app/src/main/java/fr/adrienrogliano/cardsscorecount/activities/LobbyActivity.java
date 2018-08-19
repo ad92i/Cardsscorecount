@@ -1,5 +1,6 @@
 package fr.adrienrogliano.cardsscorecount.activities;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +21,8 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +51,7 @@ public class LobbyActivity extends AppCompatActivity {
     // Permet de faire la liaison entre la liste des scores et l'objet GridView.
     private ArrayAdapter<String> mAdapterScore = null;
 
-    // Contiendra une instance du jeu choisi (tous les jeux hérite de Game).
+    // Contiendra une instance du jeu choisi (tous les jeux héritant de Game).
     private Game mGameChoose = null;
 
     // TODO : Sauvegarde des parties et ajout de condition de victoire.
@@ -64,7 +68,7 @@ public class LobbyActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         EditText editText = view.findViewById(R.id.dialog_add_score_input);
-                        mLobby.addScore(player, editText.getText().toString());
+                        mLobby.addScorePlayer(player, editText.getText().toString());
                         mScoreList = mLobby.getGame().setScoringList(mLobby);
                         mAdapterScore = new ArrayAdapter<>(LobbyActivity.this, android.R.layout.simple_list_item_1, mScoreList);
                         mGridViewScore.setAdapter(mAdapterScore);
@@ -79,17 +83,39 @@ public class LobbyActivity extends AppCompatActivity {
     // Récupère les joueurs passés dans le paramètre de l'activité.
     private List<Player> getIntentPlayers() {
         List<Player> players = new ArrayList<>();
-        int nb_players;
+        int nbPlayers;
+        Player playerInIntent;
         Intent intent = getIntent();
-        nb_players = intent.getIntExtra(PreLobbyActivity.NB_PLAYERS, 0);
-        if (nb_players != 0) {
-            for (int i = 0; i < nb_players; i++) {
-                players.add((Player) intent.getParcelableExtra(PreLobbyActivity.EXTRA[i]));
+        nbPlayers = intent.getIntExtra(PreLobbyActivity.NB_PLAYERS, 0);
+        if (nbPlayers != 0) {
+            for (int i = 0; i < nbPlayers; i++) {
+                playerInIntent = intent.getParcelableExtra(PreLobbyActivity.EXTRA[i]);
+                playerInIntent.hasParticipate();
+                players.add(playerInIntent);
             }
         }
 
         return players;
     }
+
+    private Game getIntentGame() {
+        Game game = null;
+
+        switch (getIntent().getStringExtra(PreLobbyActivity.GAME_CHOOSE)) {
+            case "Rami":
+                game = new Rami(getIntent().getStringExtra(PreLobbyActivity.PARTY_NAME));
+                break;
+            case "Mölkky":
+                game = new Molkky(getIntent().getStringExtra(PreLobbyActivity.PARTY_NAME));
+                break;
+            case "Belote":
+                game = new Belote(getIntent().getStringExtra(PreLobbyActivity.PARTY_NAME));
+                break;
+
+        }
+        return game;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,21 +124,19 @@ public class LobbyActivity extends AppCompatActivity {
 
 
         // Permet de connaitre le jeu sur la précédente activité.
-        switch (getIntent().getStringExtra(PreLobbyActivity.GAME_CHOOSE)) {
-            case "Rami":
-                mGameChoose = new Rami(getIntent().getStringExtra(PreLobbyActivity.PARTY_NAME));
-                break;
-            case "Mölkky":
-                mGameChoose = new Molkky(getIntent().getStringExtra(PreLobbyActivity.PARTY_NAME));
-                break;
-            case "Belote":
-                mGameChoose = new Belote(getIntent().getStringExtra(PreLobbyActivity.PARTY_NAME));
-                break;
-
-        }
 
         // On initialise nos différentes variables d'instance.
-        mLobby = new Lobby(getIntentPlayers(), mGameChoose);
+        if (getIntent().getBooleanExtra(MainMenuActivity.gameType, false)){
+            try {
+                mLobby = Lobby.loadPlayer(this);
+            }
+            catch (IOException | ClassNotFoundException e) {
+                Toast.makeText(this, "pb", Toast.LENGTH_LONG).show();
+            }
+        }
+        else
+            mLobby = new Lobby(getIntentPlayers(), getIntentGame());
+
 
         // Permet l'affichage d'une barre d'information ou sera situé différents boutons.
         Toolbar toolbar = findViewById(R.id.score_display_toolbar);
@@ -179,15 +203,31 @@ public class LobbyActivity extends AppCompatActivity {
 
             case R.id.action_bar_save_game:
                 Toast.makeText(this, "Vous avez appuyer sur le 'save'", Toast.LENGTH_SHORT).show();
+
+                try {
+                    mLobby.saveLobby(LobbyActivity.this);
+                } catch(IOException e) {
+
+                }
                 return_value = true;
                 break;
             case R.id.action_bar_done:
+
                 AlertDialog.Builder alertWinner = new AlertDialog.Builder(LobbyActivity.this);
                 alertWinner.setTitle("Bravo !")
-                        .setMessage(mGameChoose.victoryPlayer(mLobby).getPseudo() + "! wouhouuuuu")
+                        .setMessage(mLobby.getGame().victoryPlayer(mLobby).getPseudo() + "! wouhouuuuu")
                         .setOnCancelListener(new DialogInterface.OnCancelListener() {
                             @Override
                             public void onCancel(DialogInterface dialog) {
+                                try {
+                                    File save = new File(getApplicationContext().openFileOutput("lobby__" + mLobby.getPartyName(), Context.MODE_APPEND).toString());
+                                    if (save.delete())
+                                        Toast.makeText(LobbyActivity.this, "Suppresion réussi !", Toast.LENGTH_LONG).show();
+                                }
+                                catch ( IOException e) {
+                                    Log.i("a", "onCancel: LA PARITE N'AVAIT PAS ÉTÉ SAUVERGARDÉ !");
+
+                                }
                                 setResult(RESULT_OK);
                                 LobbyActivity.this.finish();
                             }

@@ -1,11 +1,12 @@
 package fr.adrienrogliano.cardsscorecount.games;
 
+import java.io.Serializable;
 import java.util.List;
 
 import fr.adrienrogliano.cardsscorecount.utils.Lobby;
 import fr.adrienrogliano.cardsscorecount.utils.Player;
 
-public abstract class Game {
+public abstract class Game implements Serializable {
     private String partyName;
 
     public Game(String partyName){

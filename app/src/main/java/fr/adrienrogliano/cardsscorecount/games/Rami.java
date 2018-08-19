@@ -1,13 +1,14 @@
 package fr.adrienrogliano.cardsscorecount.games;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.adrienrogliano.cardsscorecount.utils.Lobby;
 import fr.adrienrogliano.cardsscorecount.utils.Player;
 
-public class Rami extends Game {
+public class Rami extends Game implements Serializable {
 
     public static final String gameName = "Rami";
     public static final String gameRules = "";
