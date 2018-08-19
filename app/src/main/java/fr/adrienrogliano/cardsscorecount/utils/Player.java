@@ -1,4 +1,4 @@
-package fr.adrienrogliano.cardsscorecount;
+package fr.adrienrogliano.cardsscorecount.utils;
 
 import android.content.Context;
 import android.os.Parcel;

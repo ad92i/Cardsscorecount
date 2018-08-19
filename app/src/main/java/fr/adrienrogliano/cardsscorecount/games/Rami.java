@@ -4,8 +4,8 @@ package fr.adrienrogliano.cardsscorecount.games;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.adrienrogliano.cardsscorecount.Lobby;
-import fr.adrienrogliano.cardsscorecount.Player;
+import fr.adrienrogliano.cardsscorecount.utils.Lobby;
+import fr.adrienrogliano.cardsscorecount.utils.Player;
 
 public class Rami extends Game {
 
@@ -22,16 +22,16 @@ public class Rami extends Game {
 
     @Override
     public Player victoryPlayer(Lobby lobby) {
-        Player winner = lobby.getPlayers().get(0);
+        Player win = lobby.getPlayers().get(0);
         int min = lobby.totalPlayerScore(lobby.getPlayers().get(0));
 
         for (Player player : lobby.getPlayers())
             if (min > lobby.totalPlayerScore(player)) {
                 min = lobby.totalPlayerScore(player);
-                winner = player;
+                win = player;
             }
 
-        return winner;
+        return win;
     }
 
     // TODO Surement à refaire !

@@ -22,10 +22,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.adrienrogliano.cardsscorecount.Lobby;
-import fr.adrienrogliano.cardsscorecount.Player;
+import fr.adrienrogliano.cardsscorecount.utils.Lobby;
+import fr.adrienrogliano.cardsscorecount.utils.Player;
 import fr.adrienrogliano.cardsscorecount.R;
+import fr.adrienrogliano.cardsscorecount.games.Belote;
 import fr.adrienrogliano.cardsscorecount.games.Game;
+import fr.adrienrogliano.cardsscorecount.games.Molkky;
 import fr.adrienrogliano.cardsscorecount.games.Rami;
 
 public class LobbyActivity extends AppCompatActivity {
@@ -100,6 +102,13 @@ public class LobbyActivity extends AppCompatActivity {
             case "Rami":
                 mGameChoose = new Rami(getIntent().getStringExtra(PreLobbyActivity.PARTY_NAME));
                 break;
+            case "Mölkky":
+                mGameChoose = new Molkky(getIntent().getStringExtra(PreLobbyActivity.PARTY_NAME));
+                break;
+            case "Belote":
+                mGameChoose = new Belote(getIntent().getStringExtra(PreLobbyActivity.PARTY_NAME));
+                break;
+
         }
 
         // On initialise nos différentes variables d'instance.

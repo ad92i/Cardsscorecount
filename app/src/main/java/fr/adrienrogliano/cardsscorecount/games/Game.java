@@ -2,8 +2,8 @@ package fr.adrienrogliano.cardsscorecount.games;
 
 import java.util.List;
 
-import fr.adrienrogliano.cardsscorecount.Lobby;
-import fr.adrienrogliano.cardsscorecount.Player;
+import fr.adrienrogliano.cardsscorecount.utils.Lobby;
+import fr.adrienrogliano.cardsscorecount.utils.Player;
 
 public abstract class Game {
     private String partyName;
@@ -11,7 +11,6 @@ public abstract class Game {
     public Game(String partyName){
         this.partyName = partyName;
     }
-
 
     public abstract Player victoryPlayer(Lobby lobby);
     public abstract List<String> setScoringList(Lobby lobby);

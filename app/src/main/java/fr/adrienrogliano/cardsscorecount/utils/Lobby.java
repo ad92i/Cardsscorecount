@@ -1,4 +1,4 @@
-package fr.adrienrogliano.cardsscorecount;
+package fr.adrienrogliano.cardsscorecount.utils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
