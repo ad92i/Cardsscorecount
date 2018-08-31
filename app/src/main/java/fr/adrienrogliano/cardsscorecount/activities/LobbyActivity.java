@@ -24,6 +24,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import fr.adrienrogliano.cardsscorecount.utils.Lobby;
@@ -128,14 +129,17 @@ public class LobbyActivity extends AppCompatActivity {
         // On initialise nos différentes variables d'instance.
         if (getIntent().getBooleanExtra(MainMenuActivity.gameType, false)){
             try {
-                mLobby = Lobby.loadPlayer(this);
+                mLobby = Lobby.loadLobby(this);
+                Log.d("Score", "onCreate: "+mLobby.getScorePlayer(mLobby.getPlayers().get(0), 0));
             }
             catch (IOException | ClassNotFoundException e) {
-                Toast.makeText(this, "pb", Toast.LENGTH_LONG).show();
+                e.printStackTrace();
             }
         }
-        else
+        else {
             mLobby = new Lobby(getIntentPlayers(), getIntentGame());
+            mLobby.initializeScore();
+        }
 
 
         // Permet l'affichage d'une barre d'information ou sera situé différents boutons.
@@ -160,8 +164,6 @@ public class LobbyActivity extends AppCompatActivity {
                     }
                 }
         );
-
-        mLobby.initializeScore();
 
         mScoreList = mLobby.getGame().setScoringList(mLobby);
 

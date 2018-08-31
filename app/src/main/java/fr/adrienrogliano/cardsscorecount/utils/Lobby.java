@@ -77,7 +77,7 @@ public class Lobby implements Serializable {
     }
 
 
-    public static Lobby loadPlayer(Context context) throws IOException, ClassNotFoundException {
+    public static Lobby loadLobby(Context context) throws IOException, ClassNotFoundException {
         ObjectInputStream load = new ObjectInputStream(context.openFileInput("lobby"));
         Lobby lobby = (Lobby) load.readObject();
 
