@@ -61,8 +61,8 @@
         android:id="@+id/pre_lobby_spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pre_lobby_text_spinner" />
@@ -71,13 +71,10 @@
         android:id="@+id/pre_lobby_text_list"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/pre_lobby_text_list"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        app:layout_constraintBottom_toTopOf="@+id/pre_lobby_list"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pre_lobby_spinner" />
 
@@ -89,7 +86,7 @@
         android:layout_marginStart="16dp"
         android:background="#EEEEEE"
         android:choiceMode="multipleChoice"
-        app:layout_constraintBottom_toTopOf="@+id/pre_lobby_button"
+        app:layout_constraintBottom_toTopOf="@+id/pre_lobby_imagebutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pre_lobby_text_list" />
@@ -104,6 +101,24 @@
         android:layout_marginTop="8dp"
         android:text="@string/pre_lobby_button"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pre_lobby_imagebutton" />
+
+    <Button
+        android:id="@+id/pre_lobby_imagebutton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:background="#DDDDDD"
+        android:drawableEnd="@drawable/ic_add_box"
+        android:gravity="center_vertical"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="@string/pre_lobby_imagebutton"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        app:layout_constraintBottom_toTopOf="@+id/pre_lobby_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pre_lobby_list" />

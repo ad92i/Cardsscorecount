@@ -25,7 +25,7 @@ public class Lobby implements Serializable {
         this.game = game;
 
         this.scoreStringListMap = new HashMap<>();
-        this.partyName = game.getGameName() + " : " + game.getPartyName();
+        this.partyName = game + " : " + game.getPartyName();
     }
 
     public List<Player> getPlayers(){

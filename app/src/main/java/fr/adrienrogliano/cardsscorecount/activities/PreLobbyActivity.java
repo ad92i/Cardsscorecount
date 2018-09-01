@@ -29,10 +29,9 @@ import fr.adrienrogliano.cardsscorecount.utils.Game;
 import fr.adrienrogliano.cardsscorecount.games.Molkky;
 import fr.adrienrogliano.cardsscorecount.games.Rami;
 
+// TODO: 01/09/18 Ajout d'une fonctionnalité permettant la séléction de l'ordre des joueurs en fonction de l'ordre de séléction des joueurs.
+
 public class PreLobbyActivity extends AppCompatActivity {
-
-
-
 
     // Constantes permettant d'identifier les valeurs qui seront passées dans l'activité Lobby.
     public static final String[] EXTRA = {"PARCEL_VALUE_1", "PARCEL_VALUE_2", "PARCEL_VALUE_3", "PARCEL_VALUE_4",
@@ -170,9 +169,6 @@ public class PreLobbyActivity extends AppCompatActivity {
     }
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -237,34 +233,6 @@ public class PreLobbyActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    // Permet d'afficher l'icone pour ajouter un joueur sur la barre d'information.
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar_pre_lobby, menu);
-        return true;
-    }
-
-    // Permet de gérer les appuis sur la barre d'information.
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        boolean return_value;
-
-        switch (item.getItemId()) {
-            case R.id.action_bar_add_players:
-                newPlayerAlertDialog();
-
-                mPlayers = createPlayerList();
-
-                return_value = true;
-                break;
-
-            default:
-                return_value = super.onOptionsItemSelected(item);
-                break;
-        }
-        return return_value;
     }
 
 

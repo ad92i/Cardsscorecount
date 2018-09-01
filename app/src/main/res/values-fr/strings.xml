@@ -32,6 +32,7 @@
     <string name="pre_lobby_party_name">Nom de votre partie</string>
     <string name="invalid_input_players">Le maximum de joueur est 8.</string>
     <string name="invalid_input_party_name">Veuillez saisir un nom le nom de votre partie</string>
+    <string name="pre_lobby_imagebutton">Ajouter un joueur</string>
 
 
 </resources>

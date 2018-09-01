@@ -30,13 +30,11 @@ public class Molkky extends Game {
         return null;
     }
 
-    @Override
-    public String getGameName() {
+    public static String getGameName() {
         return Molkky.gameName;
     }
 
-    @Override
-    public String getGameRules() {
+    public static String getGameRules() {
         return Molkky.gameRules;
     }
 }

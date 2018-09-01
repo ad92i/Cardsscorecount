@@ -4,6 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "fr.adrienrogliano.cardsscorecount"
+        vectorDrawables.useSupportLibrary = true
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1

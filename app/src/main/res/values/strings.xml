@@ -38,6 +38,7 @@
     <string name="pre_lobby_party_name_input" translatable="false">xxxx#1</string>
     <string name="invalid_input_players">Player\'s maximum is 8</string>
     <string name="invalid_input_party_name">Please enter a party name</string>
+    <string name="pre_lobby_imagebutton">Add a player</string>
 
 
 

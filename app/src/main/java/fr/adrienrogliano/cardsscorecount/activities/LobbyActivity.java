@@ -34,6 +34,8 @@ import fr.adrienrogliano.cardsscorecount.utils.Game;
 import fr.adrienrogliano.cardsscorecount.games.Molkky;
 import fr.adrienrogliano.cardsscorecount.games.Rami;
 
+// TODO: 01/09/18 Gérée les nouvelles GridView afin de d'ajouter des boutons, et le total dans une liste séparée.
+
 public class LobbyActivity extends AppCompatActivity {
 
     // Permet l'affichage d'un menu lors du swipe de la gauche vers la droite de l'écran.
@@ -67,7 +69,7 @@ public class LobbyActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         EditText editText = view.findViewById(R.id.dialog_add_score_input);
                         mLobby.addScorePlayer(player, editText.getText().toString());
-                        mScoreList = mLobby.getGame().setScoringList(mLobby);
+                        mScoreList = mLobby.getGame().getCompleteScoreList(mLobby);
                         mAdapterScore = new ArrayAdapter<>(LobbyActivity.this, android.R.layout.simple_list_item_1, mScoreList);
                         mGridViewScore.setAdapter(mAdapterScore);
 
@@ -138,7 +140,6 @@ public class LobbyActivity extends AppCompatActivity {
             mLobby.initializeScore();
         }
 
-
         // Permet l'affichage d'une barre d'information ou sera situé différents boutons.
         Toolbar toolbar = findViewById(R.id.score_display_toolbar);
         toolbar.setTitle(mLobby.getPartyName());
@@ -162,7 +163,7 @@ public class LobbyActivity extends AppCompatActivity {
                 }
         );
 
-        mScoreList = mLobby.getGame().setScoringList(mLobby);
+        mScoreList = mLobby.getGame().getPlayersName(mLobby);
 
         // Permet l'affichage de la liste des scores en fonction du nombre de joueur.
         mGridViewScore = findViewById(R.id.grid_score_position);
