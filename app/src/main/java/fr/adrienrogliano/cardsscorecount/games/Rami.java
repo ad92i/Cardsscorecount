@@ -2,9 +2,9 @@ package fr.adrienrogliano.cardsscorecount.games;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
+import fr.adrienrogliano.cardsscorecount.utils.Game;
 import fr.adrienrogliano.cardsscorecount.utils.Lobby;
 import fr.adrienrogliano.cardsscorecount.utils.Player;
 
@@ -35,20 +35,16 @@ public class Rami extends Game implements Serializable {
         return win;
     }
 
-    // TODO Surement à refaire !
+    // TODO À refaire !
     @Override
     public List<String> setScoringList(Lobby lobby) {
-        ArrayList<String> list = new ArrayList<>();
+        List<String> list = super.getPlayersName(lobby);
 
-        for (int i = 0; i < lobby.getPlayers().size(); i++)
-            list.add(lobby.getPlayers().get(i).toString());
-
+        // Affiche
         for (int i = 0; i < lobby.getTurn(); i++)
             for (int j = 0; j < lobby.getPlayers().size(); j++)
                 list.add(lobby.getScorePlayer(lobby.getPlayers().get(j), i));
 
-        for (int i = 0; i < lobby.getPlayers().size(); i++)
-            list.add(String.valueOf(lobby.totalPlayerScore(lobby.getPlayers().get(i))));
 
         return list;
 

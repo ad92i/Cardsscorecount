@@ -25,7 +25,7 @@ import java.util.List;
 import fr.adrienrogliano.cardsscorecount.utils.Player;
 import fr.adrienrogliano.cardsscorecount.R;
 import fr.adrienrogliano.cardsscorecount.games.Belote;
-import fr.adrienrogliano.cardsscorecount.games.Game;
+import fr.adrienrogliano.cardsscorecount.utils.Game;
 import fr.adrienrogliano.cardsscorecount.games.Molkky;
 import fr.adrienrogliano.cardsscorecount.games.Rami;
 

@@ -24,14 +24,13 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import fr.adrienrogliano.cardsscorecount.utils.Lobby;
 import fr.adrienrogliano.cardsscorecount.utils.Player;
 import fr.adrienrogliano.cardsscorecount.R;
 import fr.adrienrogliano.cardsscorecount.games.Belote;
-import fr.adrienrogliano.cardsscorecount.games.Game;
+import fr.adrienrogliano.cardsscorecount.utils.Game;
 import fr.adrienrogliano.cardsscorecount.games.Molkky;
 import fr.adrienrogliano.cardsscorecount.games.Rami;
 
@@ -54,8 +53,6 @@ public class LobbyActivity extends AppCompatActivity {
 
     // Contiendra une instance du jeu choisi (tous les jeux héritant de Game).
     private Game mGameChoose = null;
-
-    // TODO : Sauvegarde des parties et ajout de condition de victoire.
 
     // Gère l'affiche de la boîte de dialogue "Ajouter un score".
     private void addScoreDialog(final Player player) {

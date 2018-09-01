@@ -2,6 +2,7 @@ package fr.adrienrogliano.cardsscorecount.games;
 
 import java.util.List;
 
+import fr.adrienrogliano.cardsscorecount.utils.Game;
 import fr.adrienrogliano.cardsscorecount.utils.Lobby;
 import fr.adrienrogliano.cardsscorecount.utils.Player;
 
